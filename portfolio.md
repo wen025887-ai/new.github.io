@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: portfolio_grid
 title: Portfolio
 permalink: /portfolio/
 ---
