@@ -4,7 +4,7 @@ title: What the Fuck
 subtitle: Each post also has a subtitle
 categories: markdown
 tags: [example, markdown]
-thumbnail: "/assets/images/portfolio/my-image.jpg"  # 這裡就是程式抓取的地方
+thumbnail: "/assets/images/portfolio/TwiNight.png"  # 這裡就是程式抓取的地方
 ---
 
 This note demonstrates some of what [Markdown][1] is capable of doing.
