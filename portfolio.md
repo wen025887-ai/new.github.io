@@ -1,54 +1,118 @@
 ---
-layout: portfolio_grid
+layout: page
 title: Portfolio
 permalink: /portfolio/
 ---
 
-<div class="portfolio-header">
-  <h1>PORTFOLIO</h1>
-  <p class="subtitle">Lorem ipsum dolor sit amet consectetur.</p>
-</div>
+<div class="portfolio-wrapper">
+  <div class="portfolio-intro">
+    <h1 class="portfolio-main-title">PORTFOLIO</h1>
+    <p class="portfolio-subtitle">Lorem ipsum dolor sit amet consectetur.</p>
+  </div>
 
-<div class="portfolio-grid">
-  {% for post in site.posts %}
-    <a href="{{ post.url | relative_url }}" class="portfolio-card">
-      <div class="card-image-box">
-        <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}">
+  <div class="portfolio-grid">
+    {% for post in site.posts %}
+      {% if post.thumbnail %}
+      <div class="portfolio-item">
+        <a href="{{ post.url | relative_url }}">
+          <div class="image-container">
+            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Missing'">
+          </div>
+          <div class="text-container">
+            <h3>{{ post.title }}</h3>
+            <span>{{ post.category | default: "Project" }}</span>
+          </div>
+        </a>
       </div>
-      <div class="card-text-box">
-        <h3 class="post-title">{{ post.title }}</h3>
-        <p class="post-category">{{ post.category }}</p>
-      </div>
-    </a>
-  {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </div>
 </div>
 
 <style>
-.portfolio-header { text-align: center; padding: 50px 0; }
-.portfolio-header h1 { font-size: 48px; font-weight: 800; letter-spacing: 2px; margin-bottom: 10px; color: #333; }
-.portfolio-header .subtitle { font-family: serif; font-style: italic; color: #888; font-size: 18px; }
+/* 避免影響到主題 Banner，我們使用專屬類名 */
+.portfolio-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.portfolio-intro {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.portfolio-main-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.portfolio-subtitle {
+  font-family: serif;
+  font-style: italic;
+  color: #777;
+  font-size: 1.1rem;
+}
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-.portfolio-card { text-decoration: none; background: #fff; display: block; }
-.portfolio-card:hover { opacity: 0.8; }
+.portfolio-item {
+  background: #fff;
+  transition: all 0.3s ease;
+}
 
-.card-image-box img {
+.portfolio-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.image-container {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f0f0f0; /* 圖片載入前的底色 */
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.card-text-box { padding: 20px 10px; text-align: center; }
-.post-title { font-size: 22px; font-weight: 700; color: #222; margin: 0; }
-.post-category { font-family: serif; font-style: italic; color: #999; font-size: 14px; margin-top: 5px; }
+.text-container {
+  padding: 20px 10px;
+  text-align: center;
+}
 
-@media (max-width: 768px) { .portfolio-grid { grid-template-columns: 1fr; } }
+.text-container h3 {
+  font-size: 1.4rem;
+  margin: 0 0 5px 0;
+  font-weight: 700;
+}
+
+.text-container span {
+  font-family: serif;
+  font-style: italic;
+  color: #999;
+}
+
+.portfolio-item:hover {
+  opacity: 0.8;
+  transform: translateY(-5px);
+}
+
+/* 手機版縮減為單欄 */
+@media (max-width: 600px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
