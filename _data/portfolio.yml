@@ -1,0 +1,11 @@
+- id: 1
+  title: 我第一個作品
+  subtitle: 網頁設計
+  image: /assets/images/banners/home.jpeg
+  description: 這是用來展示作品細節的描述文字。
+
+- id: 2
+  title: 第二個專案
+  subtitle: 應用程式
+  image: /assets/images/banners/home.jpeg
+  description: 此為第二個作品的描述內容。
